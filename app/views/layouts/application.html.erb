@@ -12,32 +12,36 @@
     <%= javascript_pack_tag "application" %>
   </head>
   <body>
-    <ul class="nav">
-      <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#">BBQ!</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled">Disabled</a>
-      </li>
-    </ul>
+    <div class=" navbar navbar-expand-lg navbar-light bg-light navbar-default navbar-static-top">
+      <div class="container">   
+        <div class="navbar-collapse collapse navbar-responsive-collapse">
+      
+          <ul class="nav navbar-nav">
+            <li><%= link_to "BBQ", root_path, class: 'navbar-brand' %></li>
+            <% if user_signed_in? %>
+            <li><%= link_to 'Профиль', current_user, class: 'navbar-brand' %>
+              <%= link_to 'Выйти', destroy_user_session_path, :method => :delete, class: 'navbar-brand' %></li>
+            <% else %>
+            <li><%= link_to 'Войти', new_user_session_path, class: 'navbar-brand' %>
+              <%= link_to 'Зарегистрироваться', new_user_registration_path, class: 'navbar-brand' %></li>
+            <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-9">
-          <%= yield %>
-        </div>
+<div class="container p-3">
+  <div class="row">
+    <div class="col-lg-9">     
 
+        <%= yield %>
+    </div>
+  </div>
       <footer>
-        <p>&copy; Company 2021</p>
+        <p>&copy; Company 2022</p>
       </footer>
 
-    </div>
+</div>
 
   </body>
 </html>
